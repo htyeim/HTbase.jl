@@ -8,7 +8,7 @@ function add_lockfile(filename::String)
         else
             run(`touch $filename`)
             # touch(filename)
-            break        
+            break
         end
     end
 end
