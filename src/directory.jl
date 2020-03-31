@@ -1,10 +1,13 @@
 
 export add_lockfile
-function add_lockfile(filename::String)
+function add_lockfile(filename::String, sleep_time::Float64 = 16.0)
+    count = 0
+    # sleep_time = 16.9
     while true
         if isfile(filename)
-            print(string(" exist! wait 16 s. ", filename, ))
-            sleep(16.9)
+            print(string("\r $count exist! wait $sleep_time s. ", filename, ))
+            sleep(sleep_time)
+            count += 1
         else
             run(`touch $filename`)
             # touch(filename)
