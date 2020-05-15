@@ -3,6 +3,9 @@ export add_lockfile
 function add_lockfile(filename::String, sleep_time::Float64 = 16.0)
     count = 0
     # sleep_time = 16.9
+    p = dirname(filename)
+    # @show filename, p
+    isdir(p) || mkpath(p)
     while true
         if isfile(filename)
             print(string("\r $count exist! wait $sleep_time s. ", filename, ))
@@ -17,10 +20,17 @@ function add_lockfile(filename::String, sleep_time::Float64 = 16.0)
 end
 
 export rm_lockfile
-function rm_lockfile(filename::String)
+isemptydir(dir::AbstractString) = isempty(readdir(dir))
+function rm_lockfile(filename::String, rm_path = true)
     if isfile(filename)
         run(`rm $filename`)
         # rm(filename)
+    end
+    if rm_path 
+        d = dirname(filename)
+        if isemptydir(d)
+            rm(d)
+        end
     end
 end
 
