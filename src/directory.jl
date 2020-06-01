@@ -19,20 +19,6 @@ function add_lockfile(filename::String, sleep_time::Float64 = 16.0)
     end
 end
 
-export rm_lockfile
-isemptydir(dir::AbstractString) = isempty(readdir(dir))
-function rm_lockfile(filename::String, rm_path = true)
-    if isfile(filename)
-        run(`rm $filename`)
-        # rm(filename)
-    end
-    if rm_path 
-        d = dirname(filename)
-        if isemptydir(d)
-            rm(d)
-        end
-    end
-end
 
 export check_dir
 function check_dir(dir::String)
@@ -57,5 +43,18 @@ function rm_dir(dir::String)
     if isempty(a)
         rm(dir)
         rm_dir(dirname(dir))
+    end
+end
+
+
+
+export rm_lockfile
+function rm_lockfile(filename::String, rm_path = true)
+    if isfile(filename)
+        run(`rm $filename`)
+        # rm(filename)
+    end
+    if rm_path 
+        rm_dir(dirname(filename))
     end
 end
