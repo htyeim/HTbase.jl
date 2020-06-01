@@ -42,12 +42,20 @@ function check_dir(dir::String)
 end
 
 export rm_dir
+
 function rm_dir(dir::String)
     if !isdir(dir) return end
     dir = abspath(dir)
-    if isempty(readdir(dir))
+    a = readdir(dir)
+    rm_files = [".DS_Store",]
+    for irf in rm_files
+        if irf in a
+            rm(joinpath(dir, irf))
+            filter!(x->x != irf, a)
+        end
+    end
+    if isempty(a)
         rm(dir)
         rm_dir(dirname(dir))
     end
 end
-
