@@ -44,6 +44,7 @@ end
 export rm_dir
 function rm_dir(dir::String)
     if !isdir(dir) return end
+    dir = abspath(dir)
     dir = dirname(dir)
     while true
         if isempty(readdir(dir))
