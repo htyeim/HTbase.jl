@@ -12,8 +12,8 @@ function add_lockfile(filename::String, sleep_time::Float64 = 16.0)
             sleep(sleep_time)
             count += 1
         else
-            run(`touch $filename`)
-            # touch(filename)
+            # run(`touch $filename`)
+            touch(filename)
             break
         end
     end
