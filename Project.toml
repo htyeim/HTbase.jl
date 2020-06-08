@@ -3,10 +3,6 @@ uuid = "bf29a346-80a9-4b26-945a-248310ab766b"
 authors = ["htyeim <htyeim@gmail.com>"]
 version = "0.1.0"
 
-[deps]
-PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
-PyPlot = "d330b81b-6aea-500a-939a-2ce795aea3ee"
-
 [compat]
 julia = "1"
 
