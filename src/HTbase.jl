@@ -1,7 +1,7 @@
 module HTbase
 
-using PyCall
-using PyPlot
+# using PyCall
+# using PyPlot
 
 
 include("directory.jl")
