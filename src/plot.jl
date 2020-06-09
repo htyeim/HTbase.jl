@@ -1,6 +1,6 @@
 
 
-export get_video_write
+# export get_video_write
 # function get_video_write(datalen::Int64 = 12,
 #     title::String = "TEC video",
 #     artist::String = "Haitao Liu; htliu.me@gmail.com",
