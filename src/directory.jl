@@ -51,7 +51,11 @@ export rm_lockfile
 function rm_lockfile(filename::String, rm_path = true)
     if isfile(filename)
         # run(`rm $filename`)
-        rm(filename)
+        try
+            rm(filename)
+        catch
+            @warn "deleted? $filename"
+        end
     end
     if rm_path 
         rm_dir(dirname(filename))
